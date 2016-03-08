@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<!--
+    This file is part of Resumer
+    Copyright (C) 2016  Sylvia van Os
+
+    Resumer is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<html>
+    <head>
+        <title>R&eacute;sum&eacute;r</title>
+        <link rel="stylesheet" type="text/css" href="templates/common.css">
+        <link rel="stylesheet" type="text/css" href="templates/index.css">
+    </head>
+    <body>
+        <form id="content" action="generate.php" method="post">
+            <div class="space">
+                <p>What's your name?</p>
+                <input type="text" name="name" />
+            </div>
+
+            <div id="entries">
+                <p>What services are you on?</p>
+            </div>
+            <button id="addEntry" type="button">Add service</button>
+
+            <input type="submit" value="Generate" />
+        </form>
+        
+        <p><small><em>Powered by <a href="source.html">R&eacute;sum&eacute;r</a></em></small></p>
+
+        <script type="text/javascript">
+            var services = 0;
+
+            var addService = function() {
+                var entries = document.getElementById("entries");
+
+                var entry = document.createElement("div");
+                entry.className = "space";
+                entry.innerHTML = '<input type="text" name="services[' + services + '][username]">' + 
+                                  '<select name="services[' + services + '][name]">' +
+                                  '    <option value="GitHub">GitHub</option>' +
+                                  '</select>';
+                
+                entries.appendChild(entry);
+
+                services++;
+            };
+
+            document.getElementById("addEntry").onclick = addService;
+
+            addService();
+        </script>
+    </body>
+</html>
