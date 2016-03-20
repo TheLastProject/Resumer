@@ -68,7 +68,7 @@
                             <div class="container">
                                 <div class="date">{{ repo.created.year }}{% if repo.created.year != repo.updated.year %} - {{ repo.updated.year }}{% endif %}</div>
                                 <h3 class="repotitle">{{ repo.name }}</h3>
-                                <small>{{ repo.language }} - <a href="{{ repo.repository }}" target="_blank">Repository</a>{% if repo.homepage %} - <a href="{{ repo.homepage }}" target="_blank">Homepage</a>{% endif %}</small>
+                                <small>{{ repo.language }} - <a href="{{ repo.repo }}" target="_blank">Repository</a>{% if repo.homepage %} - <a href="{{ repo.homepage }}" target="_blank">Homepage</a>{% endif %}</small>
                                 <p>{{ repo.description }}</p>
                                 <ul class="threecolumn">
                                     <li>{{ repo.stars }} stars</li>
