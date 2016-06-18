@@ -21,6 +21,10 @@ declare(strict_types=1);
 
 abstract class RepoParser
 {
+    protected function callApi(string $url, array $streamopts) : string {
+        return file_get_contents($url, false, stream_context_create($streamopts));
+    }
+
     abstract public function __construct(string $username);
 
     abstract public function getIdentifier() : string;

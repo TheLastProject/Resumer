@@ -79,8 +79,6 @@ foreach ($parsers as $parser)
         @$namedRepositories[$repoName]["watchers"] += $repoWatchers;
         @$namedRepositories[$repoName]["forks"] += $repoForks;
     }
-
-
 }
 
 // Convert repositories to a normal array for sorting

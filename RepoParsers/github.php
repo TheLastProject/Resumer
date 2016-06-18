@@ -28,12 +28,18 @@ class GitHubRepoParser extends RepoParser
     private static $opts = array(
         'http' => array(
             'method' => "GET",
-            'header' => "User-Agent: TheLastProject-Listian\r\n"
+            'header' => "User-Agent: TheLastProject-Resumer\r\n"
         )
     );
 
     public function __construct(string $username) {
-        $this->repoData = json_decode(file_get_contents(sprintf("https://api.github.com/users/%s/repos", $username), false, stream_context_create(self::$opts)), true);
+        $this->repoData = json_decode(parent::callApi(sprintf("https://api.github.com/users/%s/repos", $username), self::$opts), true);
+        // Also grab organisation repositories
+        $orgs = json_decode(parent::callApi(sprintf("https://api.github.com/users/%s/orgs", $username), self::$opts), true);
+        foreach ($orgs as $org)
+        {
+            $this->repoData += json_decode(parent::callApi($org["repos_url"], self::$opts), true);
+        }
     }
 
     public function getIdentifier() : string {
@@ -53,19 +59,19 @@ class GitHubRepoParser extends RepoParser
     }
 
     public function getHomepage(int $repo) : string {
-        return $this->repoData[$repo]["homepage"] ? $this->repoData[$repo]["homepage"] : "";
+        return $this->repoData[$repo]["homepage"] ?? "";
     }
 
     public function getRepositoryUrl(int $repo) : string {
-        return $this->repoData[$repo]["html_url"];
+        return $this->repoData[$repo]["html_url"] ?? "";
     }
 
     public function getDescription(int $repo) : string {
-        return $this->repoData[$repo]["description"];
+        return $this->repoData[$repo]["description"] ?? "No description";
     }
 
     public function getLanguage(int $repo) : string {
-        return $this->repoData[$repo]["language"] ? $this->repoData[$repo]["language"] : "Unknown";
+        return $this->repoData[$repo]["language"] ?? "Unknown";
     }
 
     public function getStarCount(int $repo) : int {
