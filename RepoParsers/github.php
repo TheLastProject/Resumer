@@ -38,7 +38,7 @@ class GitHubRepoParser extends RepoParser
         $orgs = json_decode(parent::callApi(sprintf("https://api.github.com/users/%s/orgs", $username), self::$opts), true);
         foreach ($orgs as $org)
         {
-            $this->repoData += json_decode(parent::callApi($org["repos_url"], self::$opts), true);
+            $this->repoData = array_merge($this->repoData, json_decode(parent::callApi($org["repos_url"], self::$opts), true));
         }
     }
 
