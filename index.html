@@ -16,7 +16,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<html>
+<html lang="en">
     <head>
         <title>R&eacute;sum&eacute;r</title>
         <link rel="stylesheet" type="text/css" href="templates/common.css">
@@ -36,7 +36,7 @@
 
             <input type="submit" value="Generate" />
         </form>
-        
+
         <p><small><em>Powered by <a href="source.html">R&eacute;sum&eacute;r</a></em></small></p>
 
         <script type="text/javascript">
@@ -47,11 +47,11 @@
 
                 var entry = document.createElement("div");
                 entry.className = "space";
-                entry.innerHTML = '<input type="text" name="services[' + services + '][username]">' + 
+                entry.innerHTML = '<input type="text" name="services[' + services + '][username]">' +
                                   '<select name="services[' + services + '][name]">' +
                                   '    <option value="GitHub">GitHub</option>' +
                                   '</select>';
-                
+
                 entries.appendChild(entry);
 
                 services++;

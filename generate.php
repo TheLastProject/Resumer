@@ -49,7 +49,7 @@ $namedRepositories = [];
 $namedLanguages = [];
 
 foreach ($parsers as $parser)
-{ 
+{
     // Get all information. Initially, we store this as an associative array
     // based on the repository name to group repositories from several sources
     // with the same name
